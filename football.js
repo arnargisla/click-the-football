@@ -21,8 +21,9 @@ function main() {
     const submitCodeButton = document.createElement("button");
     submitCodeButton.innerText = "Submit code";
 
-    canvas.height = isMobile ? screen.availHeight : 512;
-    canvas.width = isMobile ? screen.availWidth : 512;
+    canvas.height = isMobile ? window.innerHeight : 512;
+    canvas.width = isMobile ? window.innerWidth : 512;
+
 
     body.appendChild(canvas);
     body.appendChild(counter);
