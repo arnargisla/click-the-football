@@ -133,7 +133,7 @@ function main() {
         x: 0,
         y: 0,
     }
-    
+
     function gameLoop(timestamp) {
         const du = Math.min(timestamp - oldTime, 30);
         const dt = du / 1000;
@@ -151,9 +151,10 @@ function main() {
         window.requestAnimationFrame(gameLoop);
     }
 
-    canvas.addEventListener("mousedown", evt=>{
-        click.x = evt.offsetX;
-        click.y = evt.offsetY;
+
+    function handleClick(x, y) {
+        click.x = x;
+        click.y = y;
 
         ctx.save();
 
@@ -165,6 +166,17 @@ function main() {
         ctx.restore();
 
         click.active = true;
+    }
+    
+    canvas.addEventListener("touchstart", e=>{
+        const rect = e.target.getBoundingClientRect();
+        const x = e.targetTouches[0].pageX - rect.left;
+        const y = e.targetTouches[0].pageY - rect.top;
+        handleClick(x, y);
+    });
+    
+    canvas.addEventListener("mousedown", evt=>{
+        handleClick(evt.offsetX, evt.offsetY);
     });
 
     gameLoop("");
