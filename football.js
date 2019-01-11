@@ -107,8 +107,7 @@ function main() {
 
     submitCodeButton.addEventListener("click", e=>{
         eval(codearea.value);
-    }
-    )
+    });
 
     function clickInsideBall() {
         const dx = ball.x - click.x;
@@ -134,6 +133,7 @@ function main() {
         x: 0,
         y: 0,
     }
+    
     function gameLoop(timestamp) {
         const du = Math.min(timestamp - oldTime, 30);
         const dt = du / 1000;
@@ -151,8 +151,7 @@ function main() {
         window.requestAnimationFrame(gameLoop);
     }
 
-    canvas.addEventListener("click", evt=>{
-
+    canvas.addEventListener("mousedown", evt=>{
         click.x = evt.offsetX;
         click.y = evt.offsetY;
 
@@ -166,7 +165,7 @@ function main() {
         ctx.restore();
 
         click.active = true;
-    }
-    )
+    });
+
     gameLoop("");
 }
